@@ -5,7 +5,15 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-   
+  <link rel="stylesheet" href="stylesScore.css" />
+  <style>
+    #Results{
+
+      background-image: linear-gradient(to right, green cyan);
+
+    }
+  </style>
+
  
 </head>
 <body>
@@ -39,6 +47,27 @@
         }
     }
 
+    const Results = () => (
+  <div id="Results">
+    {ballWiseRes.map((res, index) => (
+      <React.Fragment key={index}>
+        {index % 6 === 0 ? <br /> : null}
+        <span>
+          {res === 0 ? (
+            <b>.</b>
+          ) : res === "W" ? (
+            <span style={{ color: "red" }}>W</span> // Use double curly braces for style object
+          ) : (
+            res
+          )}
+        </span>
+        &emsp;
+      </React.Fragment>
+    ))}
+  </div>
+);
+
+
     const ScoreButtons=()=>(
         <div>
             <button onClick={()=>clicks(0)}>0</button>
@@ -58,6 +87,7 @@
         <h1>SCORE KEEPER</h1>
         <h2>Score {score}/{wicket}</h2>
         <ScoreButtons />
+        <Results />
         </>
     )
   
