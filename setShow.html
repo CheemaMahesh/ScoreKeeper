@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+     let paragraph="";
+      let show="Show";
+      let hide="Hide";
+      let count=1;
+      const setShow = () => {
+      count++;
+      if(count%2==0){
+        show="Hide";
+        paragraph="Hello ninjas, I am here";
+              rootElement.render(<App />);
+        console.log(paragraph);
+      }else{
+        show="show";
+        paragraph="";
+        rootElement.render(<App />);
+
+      }
+      
+      };
+
+     
+     
+      
+
+      const App = () => (
+        <>
+          <h1>Coding Ninjas</h1>
+          <button onClick={setShow}>{show} Element Below</button>
+
+         <p> {paragraph}</p>
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
