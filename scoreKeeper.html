@@ -23,29 +23,26 @@
     let score=0;
     let wicket=0;
     let ballWiseRes=[];
+    let hit=0;
 
 
     // For Score
     function clicks(num){
-        if(wicket<10){
-            ballWiseRes.push(num);
-        score+=num;
+      hit=num;
+        
         rootElemtn.render(<App />);
-        console.log(ballWiseRes);
-        }
+       
     }
 
     
     //For wickets
     function addWickets(){
-
-        if(wicket<10){
-            ballWiseRes.push("W");
-            ++wicket;
+      hit="W";
+       
             rootElemtn.render(<App />);
-            console.log(ballWiseRes);
+            
         }
-    }
+    
 
     const Results = () => (
   <div id="Results">
@@ -88,7 +85,7 @@
 
     const Form=()=>(
       <form onSubmit={handleSubmit}>
-        <input/>
+        <input value={hit}/>
         <input/>
         <button>Submit</button>
       </form>

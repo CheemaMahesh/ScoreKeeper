@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <title>React App</title>
+  <style>
+    /* ... (styles remain unchanged) ... */
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // Card component to display user information
+    const Card = ({ name, email, about }) => (
+      <div className="card">
+        <h3>Name: {name}</h3>
+        <p>Email: {email}</p>
+        <p>About: {about}</p>
+      </div>
+    );
+
+    // App component containing the form inputs and Card component
+    const App = () => {
+      // State hook to manage form input data
+      const [formData, setFormData] = React.useState({
+        name: '',
+        email: '',
+        about: '',
+      });
+
+      // Event handler for form input changes
+      const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        // Updating the respective state variable based on the input field name
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: value,
+        }));
+      };
+
+      // Destructuring the form data state variables for easy access
+      const { name, email, about } = formData;
+
+      return (
+        <div className="App">
+          {/* Rendering the Card component with the dynamic user data */}
+          <Card name={name} email={email} about={about} />
+          {/* Form inputs */}
+          <div className="inputs">
+            <input
+              placeholder="Name"
+              name="name"
+              value={name}
+              onChange={handleInputChange}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={handleInputChange}
+            />
+            <textarea
+              placeholder="About"
+              name="about"
+              value={about}
+              onChange={handleInputChange}
+            ></textarea>
+          </div>
+        </div>
+      );
+    };
+
+    // Rendering the root component (App) into the DOM
+    const rootElement = ReactDOM.createRoot(document.getElementById('root'));
+    rootElement.render(<App />);
+  </script>
+</body>
+</html>
