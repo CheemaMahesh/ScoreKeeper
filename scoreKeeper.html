@@ -79,7 +79,11 @@
     )
 
 
-    const handleSubmit=(e)=>{ e.preventDefault();}
+    const handleSubmit=(e)=>{ e.preventDefault();
+    ballWiseRes.unshift(hit);
+    rootElemtn.render(<App />);
+
+    }
     
     
 
@@ -100,6 +104,11 @@
        <br/>
        <Form/>
        <hr/>
+       {ballWiseRes.map((values,index)=>(
+
+        <p key={index}>{values}</p>
+
+       ))}
         </>
     )
   
