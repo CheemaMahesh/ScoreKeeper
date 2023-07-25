@@ -80,6 +80,10 @@
 
 
     const handleSubmit=(e)=>{ e.preventDefault();
+      if(hit== "W"){
+        wicket+=1;
+      }else{ score+=hit;}
+     
     ballWiseRes.unshift(hit);
     rootElemtn.render(<App />);
 
