@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <title>Forms in JSX</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    let namee = React.createRef();
+    let markss = React.createRef();
+
+    let arrN = [];
+    let arrM = [];
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const studentName = namee.current.value;
+      const studentMarks = markss.current.value;
+      arrN.unshift(studentName); // Push the actual value, not an object
+      arrM.unshift(studentMarks); // Push the actual value, not an object
+      rootElement.render(<App />);
+    };
+
+    const Form = () => (
+      <>
+        <h1>Students' form</h1>
+        <form onSubmit={handleSubmit}>
+          <input placeholder="Name" type="text" ref={namee} required />
+          <input placeholder="Marks" type="number" ref={markss} required />
+          <button>Submit</button>
+        </form>
+      </>
+    );
+
+    const Result = () => (
+      <>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Student's Name</th>
+              <th>Marks</th>
+            </tr>
+          </thead>
+          <tbody>
+            {arrN.map((name, index) => (
+              <tr key={index}>
+                <td>{name}</td> {/* Render the actual value, not an object */}
+                <td>{arrM[index]}</td> {/* Render the corresponding marks */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    );
+
+    const App = () => {
+      return (
+        <>
+          <Form />
+          <Result />
+        </>
+      );
+    };
+
+    const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+    rootElement.render(<App />);
+  </script>
+</body>
+</html>
