@@ -12,7 +12,7 @@
     ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <title>React App</title>
+    <title>ParkingCarsCount</title>
   </head>
 
   <body>
@@ -20,6 +20,41 @@
 
     <script type="text/babel">
       // Create handlers to increase and decrease vehicle count here
+      const increase=(val)=>{
+        if(val=="car"){
+            Car++;
+        }else if(val=="bike"){
+            Bike++;
+        }else if(val=="scooty"){
+            Scooty++;
+        }else if(val=="bicycle"){
+            Bicycle++;
+        }
+
+        rootElement.render(<App />);
+
+      }
+
+      const decrease=(val)=>{
+        if(val=="car"){
+            if(Car>0){ Car--;}
+           
+        }else if(val=="bike"){
+           if(Bike>0){ Bike--;}
+        }else if(val=="scooty"){
+                if(Scooty>0){ Scooty--;}
+        }else if(val=="bicycle"){
+            if(Bicycle>0){ Bicycle--;}
+           
+        }
+        rootElement.render(<App />);
+
+      }
+
+      let Car=0;
+      let Scooty=0;
+      let Bike=0;
+      let Bicycle=0;
 
       const App = () => (
         <>
@@ -27,25 +62,25 @@
           <ol>
             <li>
               <p>
-                <b>Car: </b> &emsp;
+                <b>Car: {Car}</b> &emsp;<button onClick={()=>increase("car")}>Increase</button>&emsp;<button onClick={()=>decrease("car")}>Decrease</button>
                 {/* Add increase and decrease count buttons here */}
               </p>
             </li>
             <li>
               <p>
-                <b>Bike: </b> &emsp;
+                <b>Bike: {Bike}</b> &emsp;<button onClick={()=>increase("bike")}>Increase</button>&emsp;<button onClick={()=>decrease("bike")}>Decrease</button>
                 {/* Add increase and decrease count buttons here */}
               </p>
             </li>
             <li>
               <p>
-                <b>Scooty: </b> &emsp;
+                <b>Scooty: {Scooty}</b> &emsp;<button onClick={()=>increase("scooty")}>Increase</button>&emsp;<button onClick={()=>decrease("scooty")}>Decrease</button>
                 {/* Add increase and decrease count buttons here */}
               </p>
             </li>
             <li>
               <p>
-                <b>Bicycle:</b> &emsp;
+                <b>Bicycle: {Bicycle}</b> &emsp;<button onClick={()=>increase("bicycle")}>Increase</button>&emsp;<button onClick={()=>decrease("bicycle")}>Decrease</button>
                 {/* Add increase and decrease count buttons here */}
               </p>
             </li>
