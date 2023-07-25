@@ -24,6 +24,7 @@
     let wicket=0;
     let ballWiseRes=[];
     let hit=0;
+    let inputRef=React.createRef();
 
 
     // For Score
@@ -72,7 +73,6 @@
             <button onClick={()=>clicks(2)}>2</button>
             <button onClick={()=>clicks(3)}>3</button>
             <button onClick={()=>clicks(4)}>4</button>
-            <button onClick={()=>clicks(5)}>5</button>
             <button onClick={()=>clicks(6)}>6</button>
             <button onClick={addWickets}>wicket</button>
             </div>
@@ -84,7 +84,12 @@
         wicket+=1;
       }else{ score+=hit;}
      
-    ballWiseRes.unshift(hit);
+      console.log(inputRef.current.value);
+    ballWiseRes.unshift(
+      <span>{`${hit}, ${inputRef.current.value}`}</span>
+    );
+    hit=0;
+    inputRef.current.value="";
     rootElemtn.render(<App />);
 
     }
@@ -94,7 +99,7 @@
     const Form=()=>(
       <form onSubmit={handleSubmit}>
         <input value={hit}/>
-        <input/>
+        <input ref={inputRef} placeholder="Add a comment"/>
         <button>Submit</button>
       </form>
     )
