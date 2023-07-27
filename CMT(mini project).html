@@ -70,7 +70,7 @@ input {
       let N=React.createRef();
       let P=React.createRef();
       let CI=React.createRef();
-
+      let CCO=[];
     
 
       const currentTime = new Date();
@@ -114,6 +114,15 @@ const submitHandler=(e)=>{
 
 }
 
+// ============checkOut======================
+const checkOut=(value)=>{
+  console.log("maheeeeeeeeee ",value);
+  CCO[value]=times;
+  seatsLeft+=parseInt(customers[value].count);
+  rootElement.render(<App />);
+
+}
+
 
     
 
@@ -144,9 +153,9 @@ const submitHandler=(e)=>{
                               <td>{u.name}</td>
                               <td>{u.phone}</td>
                               <td>{u.cin}</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
+                              <td>{CCO[i]?CCO[i]:"-"}</td>
+                              <td onClick={()=>checkOut(i)}>{CCO[i]?"Served":"Click to Checkout"}</td>
+                              <td >Delete</td>
                               </tr>
                           ))}
                           </tbody>
