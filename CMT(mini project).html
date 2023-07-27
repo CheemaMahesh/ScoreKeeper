@@ -117,14 +117,30 @@ const submitHandler=(e)=>{
 // ============checkOut======================
 const checkOut=(value)=>{
   console.log("maheeeeeeeeee ",value);
-  CCO[value]=times;
+  let served={time:times,serve:true};
+  CCO[value]=served;
   seatsLeft+=parseInt(customers[value].count);
   rootElement.render(<App />);
 
 }
+const deleteS=(value)=>{
+  console.log("deleeeeeeeeeeeeeeeeeeeeete",value);
+  if(customers[value].served){
+    customers.splice(value, 1);
+    CCO.splice(value, 1);
+    rootElement.render(<App />);
+
+  }else{
+    seatsLeft+=parseInt(customers[value].count);
+    customers.splice(value, 1);
+    CCO.splice(value, 1);
+    rootElement.render(<App />);
+
+  }
 
 
-    
+}
+
 
       const App = () => (
         <div className="App" style={{ textAlign: "center" }}>
@@ -153,9 +169,9 @@ const checkOut=(value)=>{
                               <td>{u.name}</td>
                               <td>{u.phone}</td>
                               <td>{u.cin}</td>
-                              <td>{CCO[i]?CCO[i]:"-"}</td>
+                              <td>{CCO[i]?CCO[i].time:"-"}</td>
                               <td onClick={()=>checkOut(i)}>{CCO[i]?"Served":"Click to Checkout"}</td>
-                              <td >Delete</td>
+                              <td onClick={()=>deleteS(i)}>Delete</td>
                               </tr>
                           ))}
                           </tbody>
