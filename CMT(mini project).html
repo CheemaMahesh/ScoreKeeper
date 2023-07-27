@@ -10,7 +10,7 @@
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <title>React App</title>
+    <title>CMT(mini project)</title>
     <style>
         .App {
   display: flex;
@@ -66,20 +66,84 @@ input {
       let customers = [];
       const capacity = 25;
       let seatsLeft = 25;
+      let C=React.createRef();
+      let N=React.createRef();
+      let P=React.createRef();
+      let CI=React.createRef();
 
-      // Create form submit handler here
+    
+
+  let currentTime = new Date();
+  let hours=currentTime.getHours();
+  let minuts=currentTime.getMinutes();
+
+
+ 
+
+
+
+const empty=()=>{
+  N.current.value="";
+  C.current.value="";
+  P.current.value="";
+
+}
+// Submit handler
+const submitHandler=(e)=>{
+  e.preventDefault();
+ if(seatsLeft>0&&C.current.value<=seatsLeft){
+  console.log("Hai");
+  const value={}
+  customers.unshift({name:N.current.value,count:C.current.value,phone:P.current.value,cin:minuts});
+  seatsLeft-=C.current.value;
+  // getCurrentTime=0;
+  console.log(minuts);
+  minuts=currentTime.getMinutes();
+  // console.log(N.current.value);
+  empty();
+  rootElement.render(<App />);
+ }
+
+
+}
+
+
+    
 
       const App = () => (
         <div className="App" style={{ textAlign: "center" }}>
           <div>
-            <h2>Total Capacity: </h2>
-            <h2>Seats Left: </h2>
+            <h2>Total Capacity: {capacity}</h2>
+            <h2>Seats Left: {seatsLeft}</h2>
           </div>
 
-          {/* Create a form here */}
-
+      
+            <form onSubmit={submitHandler}>
+                <input placeholder="Guests Count" type="number" ref={C}/>
+                <input placeholder="Primary Guest Name" type="text" ref={N}/>
+                <input placeholder="Phone Number" type="number" ref={P}/>
+                <button>Add entry</button>
+                </form>
           {/* Complete table to show records of customers */}
-          <table border="1px" style={{ margin: "auto" }}></table>
+          <table border="1px" style={{ margin: "auto" }}><thead>
+                        <tr>
+                            <th>Count</th><th>Name</th><th>Phone</th><th>Check In</th><th>Check Out</th><th>Status</th><th>Remove Entry</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {customers.map((u,i)=>(
+                            <tr key={i}>
+                              <td>{u.count}</td>
+                              <td>{u.name}</td>
+                              <td>{u.phone}</td>
+                              <td>{u.cin}</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                              </tr>
+                          ))}
+                          </tbody>
+                        </table>
         </div>
       );
 
