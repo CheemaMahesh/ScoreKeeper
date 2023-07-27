@@ -73,9 +73,17 @@ input {
 
     
 
-  let currentTime = new Date();
-  let hours=currentTime.getHours();
-  let minuts=currentTime.getMinutes();
+      const currentTime = new Date();
+      let times = new Date().toLocaleTimeString();
+
+const updateTime = () => {
+  times = new Date().toLocaleTimeString();
+};
+
+setInterval(updateTime, 1000);
+
+setInterval(() => {
+}, 1000);
 
 
  
@@ -94,12 +102,11 @@ const submitHandler=(e)=>{
  if(seatsLeft>0&&C.current.value<=seatsLeft){
   console.log("Hai");
   const value={}
-  customers.unshift({name:N.current.value,count:C.current.value,phone:P.current.value,cin:minuts});
+  customers.unshift({name:N.current.value,count:C.current.value,phone:P.current.value,cin:times});
   seatsLeft-=C.current.value;
-  // getCurrentTime=0;
-  console.log(minuts);
-  minuts=currentTime.getMinutes();
-  // console.log(N.current.value);
+ 
+  console.log(times);
+ 
   empty();
   rootElement.render(<App />);
  }
